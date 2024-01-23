@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yugiapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yugiapi
+  template:
+    metadata:
+      labels:
+        app: yugiapi
+    spec:
+      containers:
+        - name: yugiapi
+          image: localhost:32000/yugiapi:latest
+          ports:
+            - containerPort: 5000

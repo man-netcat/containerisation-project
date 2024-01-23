@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yugiwebapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yugiwebapp
+  template:
+    metadata:
+      labels:
+        app: yugiwebapp
+    spec:
+      containers:
+        - name: yugiwebapp
+          image: localhost:32000/yugiwebapp:latest
+          ports:
+            - containerPort: 3000
