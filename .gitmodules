@@ -1,0 +1,6 @@
+[submodule "yugiwebapp"]
+	path = yugiwebapp
+	url = https://github.com/man-netcat/yugiwebapp.git
+[submodule "yugiapi"]
+	path = yugiapi
+	url = https://github.com/man-netcat/yugiapi.git
