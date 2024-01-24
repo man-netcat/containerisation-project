@@ -1,0 +1,14 @@
+# values.yaml
+yugiapi:
+  image:
+    repository: localhost:32000/yugiapi
+    tag: latest
+  service:
+    port: 5000
+
+yugiwebapp:
+  image:
+    repository: localhost:32000/yugiwebapp
+    tag: latest
+  service:
+    port: 3000

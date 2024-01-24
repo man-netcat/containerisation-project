@@ -1,0 +1,16 @@
+services:
+  yugiapi:
+    build:
+      context: ./yugiapi
+      dockerfile: Dockerfile
+    image: localhost:32000/yugiapi:latest
+    ports:
+      - "5000:5000"
+
+  yugiwebapp:
+    build:
+      context: ./yugiwebapp
+      dockerfile: Dockerfile
+    image: localhost:32000/yugiwebapp:latest
+    ports:
+      - "3000:3000"

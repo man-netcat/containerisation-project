@@ -1,0 +1,5 @@
+# Chart.yaml
+apiVersion: v2
+name: yugidbapp-chart
+description: A Helm chart for deploying web application and API
+version: 0.1.0

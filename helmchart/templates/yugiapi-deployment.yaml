@@ -1,7 +1,8 @@
+# templates/yugiapi-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: yugiapi-deployment
+  name: {{ .Release.Name }}-yugiapi-deployment
 spec:
   replicas: 1
   selector:
@@ -14,6 +15,6 @@ spec:
     spec:
       containers:
         - name: yugiapi
-          image: localhost:32000/yugiapi:latest
+          image: {{ .Values.yugiapi.image.repository }}:{{ .Values.yugiapi.image.tag }}
           ports:
             - containerPort: 5000
