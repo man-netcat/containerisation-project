@@ -1,3 +1,3 @@
 helm uninstall yugidbapp
-kubectl get pods
 docker compose down
+kubectl get pods

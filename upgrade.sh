@@ -1,4 +1,4 @@
 docker compose build
 docker compose push
-helm install yugidbapp ./helmchart
+helm upgrade yugidbapp ./helmchart
 kubectl get svc

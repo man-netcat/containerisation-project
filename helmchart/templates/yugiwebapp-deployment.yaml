@@ -17,4 +17,4 @@ spec:
         - name: yugiwebapp
           image: {{ .Values.yugiwebapp.image.repository }}:{{ .Values.yugiwebapp.image.tag }}
           ports:
-            - containerPort: 3000
+            - containerPort: {{ .Values.yugiwebapp.service.port }}
