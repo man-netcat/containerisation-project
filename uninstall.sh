@@ -1,3 +1,3 @@
 helm uninstall yugidbapp
-docker compose down
 kubectl get pods
+docker compose down --volumes

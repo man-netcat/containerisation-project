@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-yugiwebapp-deployment
+  name: {{ .Release.Name }}-{{ .Values.yugiwebapp.name }}-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: yugiwebapp
+      app: {{ .Values.yugiwebapp.name }}
   template:
     metadata:
       labels:
-        app: yugiwebapp
+        app: {{ .Values.yugiwebapp.name }}
     spec:
       containers:
-        - name: yugiwebapp
+        - name: {{ .Values.yugiwebapp.name }}
           image: {{ .Values.yugiwebapp.image.repository }}:{{ .Values.yugiwebapp.image.tag }}
           ports:
             - containerPort: {{ .Values.yugiwebapp.service.port }}

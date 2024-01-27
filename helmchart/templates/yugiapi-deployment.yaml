@@ -1,20 +1,25 @@
-# templates/yugiapi-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-yugiapi-deployment
+  name: {{ .Release.Name }}-{{ .Values.yugiapi.name }}-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: yugiapi
+      app: {{ .Values.yugiapi.name }}
   template:
     metadata:
       labels:
-        app: yugiapi
+        app: {{ .Values.yugiapi.name }}
     spec:
       containers:
         - name: yugiapi
           image: {{ .Values.yugiapi.image.repository }}:{{ .Values.yugiapi.image.tag }}
           ports:
             - containerPort: {{ .Values.yugiapi.service.port }}
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgres.name }}-secret
+                  key: POSTGRES_PASSWORD

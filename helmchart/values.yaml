@@ -1,5 +1,15 @@
 # values.yaml
+postgres:
+  name: postgres
+  image:
+    repository: localhost:32000/postgres
+    tag: latest
+  service:
+    port: 5432
+    nodePort: 30001
+
 yugiapi:
+  name: yugiapi
   image:
     repository: localhost:32000/yugiapi
     tag: latest
@@ -7,6 +17,7 @@ yugiapi:
     port: 5000
 
 yugiwebapp:
+  name: yugiwebapp
   image:
     repository: localhost:32000/yugiwebapp
     tag: latest

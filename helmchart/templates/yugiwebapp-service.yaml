@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-yugiwebapp-service
+  name: {{ .Release.Name }}-{{ .Values.yugiwebapp.name }}-service
 spec:
   type: ClusterIP
   ports:
@@ -10,4 +10,4 @@ spec:
       port: {{ .Values.yugiwebapp.service.port }}
       targetPort: {{ .Values.yugiwebapp.service.port }}
   selector:
-    app: yugiwebapp
+    app: {{ .Values.yugiwebapp.name }}

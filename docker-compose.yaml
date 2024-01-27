@@ -1,16 +1,37 @@
+version: '3.8'
+
 services:
+  postgres:
+    container_name: postgresCont 
+    image: localhost:32000/postgres:latest
+    restart: always
+    ports:
+    - '5432:5432'
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+
   yugiapi:
     build:
       context: ./yugiapi
       dockerfile: Dockerfile
+    container_name: yugiapiCont 
     image: localhost:32000/yugiapi:latest
     ports:
       - "5000:5000"
+    depends_on:
+      - postgres
 
   yugiwebapp:
     build:
       context: ./yugiwebapp
       dockerfile: Dockerfile
+    container_name: yugiwebappCont 
     image: localhost:32000/yugiwebapp:latest
     ports:
       - "3000:3000"
+    depends_on:
+      - yugiapi
+
+volumes:
+  postgres_db:
+    driver: local

@@ -1,0 +1,36 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: {{ .Release.Name }}-{{ .Values.postgres.name }}-deployment 
+spec: 
+  replicas: 1 
+  selector: 
+    matchLabels: 
+      app: {{ .Values.postgres.name }} 
+  template: 
+    metadata: 
+      labels: 
+        app: {{ .Values.postgres.name }} 
+    spec: 
+      containers:
+        - name: {{ .Values.postgres.name }}
+          image: {{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}
+          imagePullPolicy: "IfNotPresent" 
+          ports:
+            - containerPort: {{ .Values.postgres.service.port }}
+          envFrom: 
+            - configMapRef: 
+                name: {{ .Values.postgres.name }}-config 
+          env: 
+            - name: POSTGRES_PASSWORD 
+              valueFrom: 
+                secretKeyRef: 
+                  name: {{ .Values.postgres.name }}-secret 
+                  key: POSTGRES_PASSWORD 
+          volumeMounts: 
+            - mountPath: /var/lib/postgresql/data 
+              name: {{ .Values.postgres.name }}db
+      volumes: 
+        - name: {{ .Values.postgres.name }}db 
+          persistentVolumeClaim: 
+            claimName: {{ .Values.postgres.name }}-pv-claim 
